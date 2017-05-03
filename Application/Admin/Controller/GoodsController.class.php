@@ -7,7 +7,7 @@ class GoodsController extends Controller {
     	//处理表单
     	if(IS_POST){
     		$model = D('Goods');
-    		if($model->create()){
+    		if($model->create(I('post.'),1)){
     			if($model->add()){
     				$this->success('操作成功',U('lst'));
     				exit;

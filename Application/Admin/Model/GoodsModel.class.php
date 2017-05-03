@@ -2,7 +2,11 @@
 namespace Admin\Model;
 use Think\Model;
 class GoodsModel extends Model 
-{
+{	
+
+	//在调用create时允许接收的字段
+	protected $insertFields = array('goods_name','price','goods_desc','is_on_sale');
+
 	// 定义表单验证的规则，控制器中的create方法时用
 	protected $_validate = array(
 		array('goods_name', 'require', '商品名称不能为空！', 1),
@@ -19,5 +23,42 @@ class GoodsModel extends Model
 	{
 		// 获取当前时间
 		$data['addtime'] = time();
+
+		//上传图片
+		if($_FILES['logo']['error'] == 0)
+		{
+			 $rootPath = C('IMG_rootPath');
+			 $upload = new \Think\Upload(array(
+			 	'rootPath'=> $rootPath
+			 ));// 实例化上传类    
+			 $upload->maxSize   =     (int)C('IMG_maxSize') * 1024 * 1024;   
+			 $upload->exts      =     C('IMG_exit');
+			 //$upload->rootPath  =  	  $rootPath;    
+			 $upload->savePath  =     'Goods/'; 
+			 // 设置附件上传目录    
+
+			 // 上传文件     
+			 $info   =   $upload->upload();    
+
+			 if(!$info) {
+			 	 // 上传错误提示错误信息        
+			 	 $this->error = $upload->getError();
+			 	 return false;    
+			 }else{
+			 	// 上传成功,生成缩略图        
+			 	$image = new \Think\Image(); 
+
+			 	//原图文件名
+			 	$logoName = $info['logo']['savepath'] . $info['logo']['savename'];
+			 	//拼接缩略图文件名
+			 	$smallName = $info['logo']['savepath'] .'sm_'. $info['logo']['savename'];
+			 	$image->open($rootPath.$logoName);
+			 	$image->thumb(150, 150)->save($rootPath.$smallName);
+
+			 	//把图片路径放到表单中，存入数据库
+			 	$data['logo'] = $logoName;
+			 	$data['sm_logo'] = $smallName;
+			 }
+		}
 	}
 }
