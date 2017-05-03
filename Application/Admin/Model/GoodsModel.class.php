@@ -61,4 +61,22 @@ class GoodsModel extends Model
 			 }
 		}
 	}
+
+	public function search()
+	{	
+		//总的记录数
+		$count = $this->count();
+		//生成分页参数
+		$Page = new \Think\Page($count,2);
+		//获取分页字符串
+		$show = $Page->show();
+		//取出当前页的数据
+		$data = $this->limit($Page->firstRow.','.$Page->listRows)->select();
+	
+		return array(
+			'page' => $show,
+			'data' => $data
+			);
+	
+	}
 }

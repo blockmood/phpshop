@@ -23,6 +23,16 @@ class GoodsController extends Controller {
 	}
 
 	public function lst(){
-		echo 'lst';
+        $model = D('Goods');
+        //获取带翻页的数据
+        $data = $model->search();
+
+		$this->assign(array(
+            //数据
+            'data' => $data['data'],
+            //分页
+            'page' => $data['page'],
+            ));
+        $this->display();
 	}
 }
