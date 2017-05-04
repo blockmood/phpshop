@@ -64,14 +64,59 @@ class GoodsModel extends Model
 
 	public function search()
 	{	
+		/******** 搜索 ********/
+		$where = array();
+		//商品名称搜索
+		$goods_name= I('get.goods_name');
+		if($goods_name){
+			$where['goods_name'] = array('LIKE','%$goods_name%');
+		}
+		//价格的搜索
+		$start_price = I('get.start_price');
+		$end_price = I('get.end_price');
+		if($start_price && $end_price){
+			$where['price'] = array('between',array($start_price,$end_price));
+		}elseif($start_price){
+			$where['price'] = array('egt',$start_price);
+		}elseif($end_price){
+			$where['price'] = array('elt',$end_price);
+		}
+		//上架的搜索
+		$isONsale = I('get.is_on_sale',-1);
+		if($isONsale != -1){
+			$where['is_on_sale'] = array('eq',$isONsale);
+		}
+		//是否删除的搜索
+		$isDelete = I('get.isDelete',-1);
+		if($isDelete != -){
+			$where['isDelete'] = array('eq',$isDelete);
+		}
+		/******** 排序 *********/
+		$orderby = 'id';  // 默认排序字段
+		$orderway = 'asc'; // 默认排序方式
+		$odby = I('get.odby');
+		if($odby && in_array($odby, array('id_asc','id_desc','price_asc','price_desc')))
+		{
+			if($odby == 'id_desc')
+				$orderway = 'desc';
+			elseif ($odby == 'price_asc')
+				$orderby = 'price';
+			elseif ($odby == 'price_desc')
+			{
+				$orderby = 'price';
+				$orderway = 'desc';
+			}
+		}
+
+		/******** 翻页 ********/
 		//总的记录数
-		$count = $this->count();
+		$count = $this->where($where)->count();
 		//生成分页参数
 		$Page = new \Think\Page($count,2);
 		//获取分页字符串
 		$show = $Page->show();
-		//取出当前页的数据
-		$data = $this->limit($Page->firstRow.','.$Page->listRows)->select();
+		//取出当前页(带搜索，排序)的数据
+		$data = $this->where($where)->limit($Page->firstRow.','.$Page->listRows)->order("$orderby $orderway")->select();
 	
 		return array(
 			'page' => $show,
