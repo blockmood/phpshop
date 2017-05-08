@@ -75,19 +75,39 @@ class GoodsModel extends Model
 		$start_price = I('get.start_price');
 		$end_price = I('get.end_price');
 		if($start_price && $end_price){
-			$where['price'] = arrat('between',array($start_price,$end_price));
+			$where['price'] = array('between',array($start_price,$end_price));
 		}elseif($start_price){
 			$where['price'] = array('egt',$start_price);
 		}elseif($end_price){
 			$where['price'] = array('elt',$end_price);
 		}
+		//排序方式
+		$orderby = 'id';  //默认排序字段
+		$orderway = 'asc'; //默认排序方式
+		$orderByArray = array('id_asc','id_desc','price_asc','price_desc');
+		$order = I('get.order');
+		if($order && in_array($order,$orderByArray)){
+			if($order == 'id_asc'){
+			}
+			if($order == 'id_desc'){
+				$orderway = 'desc';
+			}
+			if($order == 'price_asc'){
+				$orderby = 'price';
+			}
+			if($order == 'price_desc'){
+				$orderby = 'price';
+				$orderway = 'desc';
+			}
+		}
+
 		//是否上架的搜索
-		$isOnSale = I('get.is_on_sale');
+		$isOnSale = I('get.is_on_sale',-1);
 		if($isOnSale != -1){
 			$where['is_on_sale'] = array('eq',$isOnSale);
 		}
 		//是否删除的搜索
-		$isDelete = I('get.is_delete');
+		$isDelete = I('get.is_delete',-1);
 		if($isDelete != -1){
 			$where['is_delete'] = array('eq',$isDelete);
 		}
@@ -101,8 +121,9 @@ class GoodsModel extends Model
 		// 获取翻页字符串
 		$show = $page->show();
 		// 取出当前页的数据
-		$data = $this->where($where)->limit($page->firstRow.','.$page->listRows)->select();
+		$data = $this->where($where)->limit($page->firstRow.','.$page->listRows)->order("$orderby $orderway")->select();
 		
+		// echo $this->getlastsql();
 		
 		return array(
 			'page' => $show,

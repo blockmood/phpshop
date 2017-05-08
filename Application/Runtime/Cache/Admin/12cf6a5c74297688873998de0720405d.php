@@ -7,6 +7,7 @@
 
 <!-- 搜索 -->
 <form method="get" action="">
+	<input type="hidden" name="p" value="1">
 	商品名称:<input type="text" name="goods_name" value="<?php echo I('get.goods_name') ?>"><br/>
 	价    格:从<input type="text" name="start_price" value="<?php  echo I('get.start_price')?>">到<input type="text" name="end_price" value="<?php echo I('get.end_price') ?>"><br/>
 	是否上架:<input type="radio" name="is_on_sale" value="-1"/ <?php if(I('get.is_on_sale',-1) == -1) echo 'checked="checked"' ?> />全部
@@ -15,10 +16,10 @@
 	是否删除:<input type="radio" name="is_delete" value="-1" <?php if(I('get.is_delete',-1) == -1) echo 'checked="checked"' ?> />全部
 			 <input type="radio" name="is_delete" value="1" <?php if(I('get.is_delete',-1) == 1) echo 'checked="checked"' ?> />是	
 			 <input type="radio" name="is_delete" value="0" <?php if(I('get.is_delete',-1) == 0) echo 'checked="checked"' ?> />否<br/>
-	排序:	 <input type="radio" name="odby" value="time_asc" checked="checked">根据添加时间升序
-			 <input type="radio" name="odby" value="time_desc">根据添加时间降序
-			 <input type="radio" name="odby" value="price_asc">根据价格升序
-			 <input type="radio" name="odby" value="price_desc">根据价格降序<br/>
+	排序:	 <input type="radio" name="order" value="id_asc" <?php if(I('get.order',id_asc) == 'id_asc') echo 'checked="checked"' ?> />根据ID升序
+			 <input type="radio" name="order" value="id_desc" <?php if(I('get.order') == 'id_desc') echo 'checked="checked"' ?> />根据ID降序
+			 <input type="radio" name="order" value="price_asc" <?php if(I('get.order') == 'price_asc') echo 'checked="checked"' ?> />根据价格升序
+			 <input type="radio" name="order" value="price_desc" <?php if(I('get.order') == 'price_desc') echo 'checked="checked"' ?> />根据价格降序<br/>
 	<input type="submit" value="搜索">	
 
 </form>
