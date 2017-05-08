@@ -69,59 +69,45 @@ class GoodsModel extends Model
 		//商品名称搜索
 		$goods_name= I('get.goods_name');
 		if($goods_name){
-			$where['goods_name'] = array('LIKE','%$goods_name%');
+			$where['goods_name'] = array('like',"%$goods_name%");
 		}
-		//价格的搜索
+		//商品价格的搜索
 		$start_price = I('get.start_price');
 		$end_price = I('get.end_price');
 		if($start_price && $end_price){
-			$where['price'] = array('between',array($start_price,$end_price));
+			$where['price'] = arrat('between',array($start_price,$end_price));
 		}elseif($start_price){
 			$where['price'] = array('egt',$start_price);
 		}elseif($end_price){
 			$where['price'] = array('elt',$end_price);
 		}
-		//上架的搜索
-		$isONsale = I('get.is_on_sale',-1);
-		if($isONsale != -1){
-			$where['is_on_sale'] = array('eq',$isONsale);
+		//是否上架的搜索
+		$isOnSale = I('get.is_on_sale');
+		if($isOnSale != -1){
+			$where['is_on_sale'] = array('eq',$isOnSale);
 		}
 		//是否删除的搜索
-		$isDelete = I('get.isDelete',-1);
-		if($isDelete != -){
-			$where['isDelete'] = array('eq',$isDelete);
-		}
-		/******** 排序 *********/
-		$orderby = 'id';  // 默认排序字段
-		$orderway = 'asc'; // 默认排序方式
-		$odby = I('get.odby');
-		if($odby && in_array($odby, array('id_asc','id_desc','price_asc','price_desc')))
-		{
-			if($odby == 'id_desc')
-				$orderway = 'desc';
-			elseif ($odby == 'price_asc')
-				$orderby = 'price';
-			elseif ($odby == 'price_desc')
-			{
-				$orderby = 'price';
-				$orderway = 'desc';
-			}
+		$isDelete = I('get.is_delete');
+		if($isDelete != -1){
+			$where['is_delete'] = array('eq',$isDelete);
 		}
 
-		/******** 翻页 ********/
-		//总的记录数
+
+		/************ 翻页 *************/
+		// 总的记录数
 		$count = $this->where($where)->count();
-		//生成分页参数
-		$Page = new \Think\Page($count,2);
-		//获取分页字符串
-		$show = $Page->show();
-		//取出当前页(带搜索，排序)的数据
-		$data = $this->where($where)->limit($Page->firstRow.','.$Page->listRows)->order("$orderby $orderway")->select();
-	
+		// 生成翻页对象
+		$page = new \Think\Page($count, 2);
+		// 获取翻页字符串
+		$show = $page->show();
+		// 取出当前页的数据
+		$data = $this->where($where)->limit($page->firstRow.','.$page->listRows)->select();
+		
+		
 		return array(
 			'page' => $show,
-			'data' => $data
-			);
+			'data' => $data,
+		);
 	
 	}
 }
