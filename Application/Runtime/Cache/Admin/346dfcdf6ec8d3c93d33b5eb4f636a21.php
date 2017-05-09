@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<form method="POST" action="/shop/index.php/Admin/Goods/add" enctype="multipart/form-data">
+<form method="POST" action="/shop/index.php/Admin/Goods/add.html" enctype="multipart/form-data">
 	商品名称:<input type="text" name="goods_name" /><br />
 	商品价格:<input type="text" name="price" /><br />
 	商品描述:<input type="text" name="goods_desc" /><br />
@@ -16,5 +16,6 @@
 	<br />
 	<input type="submit" value="提交" />
 </form>
+<a href="<?php echo U('lst') ?>">列表</a>
 </body>
 </html>
