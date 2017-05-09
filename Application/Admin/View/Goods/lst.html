@@ -2,7 +2,11 @@
 <html>
 <head>
 	<title></title>
+<<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.css">
+=======
+	<link rel="stylesheet" href="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.css">
+>>>>>>> 59b3f13f6c190f0a46817c0b59ccbcb3cfb39737
 	<script src="__PUBLIC__/datepicker/jquery-1.7.2.min.js"></script>
 	<script src="__PUBLIC__/datepicker/jquery-ui-1.9.2.custom.min.js"></script>
 </head>
@@ -13,8 +17,13 @@
 	<input type="hidden" name="p" value="1">
 	商品名称:<input type="text" name="goods_name" value="<?php echo I('get.goods_name')  ?>"><br/>
 	价    格:从<input type="text" name="start_price" value="<?php  echo I('get.start_price')?>">到<input type="text" name="end_price" value="<?php echo I('get.end_price') ?>"><br/>
+<<<<<<< HEAD
 	时    间:从<input type="text" name="start_addtime" id="st" value="<?php  echo I('get.start_addtime')?>">到<input type="text" id="stl" name="end_addtime" value="<?php echo I('get.end_addtime') ?>"><br/>
 	是否上架:<input type="radio" name="is_on_sale" value="-1"/ <?php if(I('get.is_on_sale',-1) == -1) echo 'checked="checked"' ?> />dd
+=======
+	时    间:从<input type="text" name="start_addtime" id="st" value="<?php echo I('get.start_addtime') ?>" >到<input type="text" name="end_addtime" id="stl" value="<?php echo I('get.end_addtime') ?>" ><br/>
+	是否上架:<input type="radio" name="is_on_sale" value="-1"/ <?php if(I('get.is_on_sale',-1) == -1) echo 'checked="checked"' ?> />全部
+>>>>>>> 59b3f13f6c190f0a46817c0b59ccbcb3cfb39737
 			 <input type="radio" name="is_on_sale" value="1" <?php if(I('get.is_on_sale',-1) == 1) echo 'checked="checked"' ?> />是	
 			 <input type="radio" name="is_on_sale" value="0" <?php if(I('get.is_on_sale',-1) == 0) echo 'checked="checked"' ?> />否<br/>
 	是否删除:<input type="radio" name="is_delete" value="-1" <?php if(I('get.is_delete',-1) == -1) echo 'checked="checked"' ?> />全部
@@ -57,6 +66,13 @@
 			<td colspan="9">{$page}</td>
 		</tr>
 	</table>
+
+
+	<!-- 初始化 -->
+	<script>
+		$("#st").datepicker({ dateFormat: "yy-mm-dd" });
+		$("#stl").datepicker({ dateFormat: "yy-mm-dd" });
+	</script>
 </body>
 </html>
 <script type="text/javascript">
