@@ -14,4 +14,7 @@ return array(
 	'IMG_maxSize' => '3M',
 	'IMG_exit' => array('jpg', 'gif', 'png', 'jpeg'),
 	'IMG_rootPath' =>'./Uploads/',
+
+	/****** 修改过滤机制 ********/
+	'DEFAULT_FILTER'   =>  'trim,removeXSS',
 );

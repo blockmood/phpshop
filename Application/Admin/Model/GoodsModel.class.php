@@ -100,6 +100,16 @@ class GoodsModel extends Model
 				$orderway = 'desc';
 			}
 		}
+		//时间搜索
+		$start_addtime = I('get.start_addtime');
+		$end_addtime = I('get.end_addtime');
+		if($start_addtime && $end_addtime){
+			$where['addtime'] = array('between',array(strtotime("$start_addtime 00:00:01"),strtotime("$end_addtime 23:59:59")));
+		}elseif($start_addtime){
+			$where['addtime'] = array('egt',strtotime("$start_addtime 00:00:01"));
+		}elseif($end_addtime){
+			$where['addtime'] = array('elt',strtotime("$end_addtime 23:59:59"));
+		}
 
 		//是否上架的搜索
 		$isOnSale = I('get.is_on_sale',-1);
