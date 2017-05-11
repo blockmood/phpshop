@@ -16,7 +16,7 @@
 	价    格:从<input type="text" name="start_price" value="<?php  echo I('get.start_price')?>">到<input type="text" name="end_price" value="<?php echo I('get.end_price') ?>"><br/>
 
 	时    间:从<input type="text" name="start_addtime" id="st" value="<?php  echo I('get.start_addtime')?>">到<input type="text" id="stl" name="end_addtime" value="<?php echo I('get.end_addtime') ?>"><br/>
-	是否上架:<input type="radio" name="is_on_sale" value="-1"/ <?php if(I('get.is_on_sale',-1) == -1) echo 'checked="checked"' ?> />dd
+	是否上架:<input type="radio" name="is_on_sale" value="-1"/ <?php if(I('get.is_on_sale',-1) == -1) echo 'checked="checked"' ?> />全部
 
 			 <input type="radio" name="is_on_sale" value="1" <?php if(I('get.is_on_sale',-1) == 1) echo 'checked="checked"' ?> />是	
 			 <input type="radio" name="is_on_sale" value="0" <?php if(I('get.is_on_sale',-1) == 0) echo 'checked="checked"' ?> />否<br/>
@@ -53,7 +53,9 @@
 			<td><?php echo $v['is_on_sale'] == 1 ? '上架' :'下架' ?></td>
 			<td><?php echo $v['is_delete'] == 1 ? '已删除' :'未删除' ?></td>
 			<td><?php echo date('Y-m-d',$v['addtime']) ?></td>
-			<td>修改  删除</td>
+			<td>
+			<a href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p'),1) ?>">修改</a> 
+			<a href="<?php echo U('delete?id='.$v['id'].'&p='.I('get.p',1)) ?>" onclick="return confirm('确定要删除吗？')" >删除</a></td>
 		</tr>
 		<?php endforeach; ?>
 		<tr>

@@ -3,19 +3,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<script src="__PUBLIC__/datepicker/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="__PUBLIC__/ueditor/lang/zh-cn/zh-cn.js"></script>
 <body>
-<form name="main_form" method="POST" action="__SELF__" enctype="multipart/form-data">
-	商品名称:<input type="text" name="goods_name" /><br />
-	商品价格:<input type="text" name="price" /><br />
+<form method="POST" action="__SELF__" enctype="multipart/form-data">
+	<input type="hidden" name="id" value="<?php echo $info['id'] ?>">
+	商品名称:<input type="text" name="goods_name" value="<?php echo $info['goods_name']; ?>" /><br />
+	商品价格:<input type="text" name="price" value="<?php echo $info['price']; ?>"/><br />
+	商品描述:<textarea id="sub_goods_name"  name="goods_desc"><?php echo $info['goods_desc']; ?></textarea><br />
 	商品logo:<input type="file" name="logo"><br/>
-	商品描述:<textarea id="sub_goods_name"  name="goods_desc"></textarea><br />
+	<img src="<?php echo '/shop/Uploads/' . $info['sm_logo'];  ?>">
 	是否上架:
-	<input type="radio" name="is_on_sale" value="1" checked="checked" />上架
-	<input type="radio" name="is_on_sale" value="0" />下架
+	<input type="radio" name="is_on_sale" value="1" <?php if($info['is_on_sale'] == 1)  echo 'checked="checked"' ?> />上架
+	<input type="radio" name="is_on_sale" value="0" <?php if($info['is_on_sale'] == 0)  echo 'checked="checked"' ?> />下架
 
 	<br />
 	<input type="submit" value="提交" />
@@ -33,27 +34,4 @@
 		"maximumWords" : 150,
 		// "toolbars" : btn_basic
 	});
-
-
-	//ajax
-	$("form").eq(0).submit(function(){
-		$.ajax({
-			type:"post",
-			url:"__SELF__",
-			data:$( this ).serialize(),
-			dataType:"json",
-			success:function(data){
-				//判断添加是否成功
-				if(data.status == 1){
-					location.href = data.url;
-				}else{
-					alert(data.info);
-				}
-			}
-		})
-
-		return false;
-	});
-
-
 </script>
