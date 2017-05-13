@@ -129,6 +129,8 @@ class GoodsModel extends Model
 		$count = $this->where($where)->count();
 		// 生成翻页对象
 		$page = new \Think\Page($count, 2);
+		$page->setConfig('next','下一页');
+		$page->setConfig('prev','上一页');
 		// 获取翻页字符串
 		$show = $page->show();
 		// 取出当前页的数据

@@ -8,7 +8,7 @@
 <script type="text/javascript" charset="utf-8" src="/shop/Public/ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="/shop/Public/ueditor/lang/zh-cn/zh-cn.js"></script>
 <body>
-<form name="main_form" method="POST" action="/shop/index.php/Admin/Goods/add.html" enctype="multipart/form-data">
+<form name="main_form" method="POST" action="/shop/index.php/Admin/Goods/add" enctype="multipart/form-data">
 	商品名称:<input type="text" name="goods_name" /><br />
 	商品价格:<input type="text" name="price" /><br />
 	商品logo:<input type="file" name="logo"><br/>
@@ -37,15 +37,13 @@
 
 	//ajax
 	$("form").eq(0).submit(function(){
-
 		$.ajax({
 			type:"post",
-			url:"/shop/index.php/Admin/Goods/add.html",
+			url:"/shop/index.php/Admin/Goods/add",
 			data:$( this ).serialize(),
 			dataType:"json",
 			success:function(data){
 				//判断添加是否成功
-				console.log(data);
 				if(data.status == 1){
 					location.href = data.url;
 				}else{

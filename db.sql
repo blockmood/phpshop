@@ -22,6 +22,19 @@ CREATE TABLE IF NOT EXISTS php34_goods
 
 
 
+DROP TABLE IF EXISTS php34_admin;
+CREATE TABLE php34_admin(
+	id tinyint unsigned not null auto_increment,
+	username varchar(30) not null comment '账号',
+	password char(32) not null comment '密码',
+	is_use tinyint unsigned not null default '1' comment '是否启用 1:启用 0 禁用',
+	primary key(id) 
+)engine=MyISAM default charset=utf8;
+
+INSERT INTO php34_admin VALUES(1,'root','902046d5b1a5c0b4cd9cb149f8276962',1);
+
+
+
 
 
 

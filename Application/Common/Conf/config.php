@@ -17,4 +17,7 @@ return array(
 
 	/****** 修改过滤机制 ********/
 	'DEFAULT_FILTER'   =>  'trim,removeXSS',
+
+	/****** md5加密 ************/
+	'md5_key' => 'trds@!#sdrtrfd',
 );

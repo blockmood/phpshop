@@ -7,7 +7,7 @@
 <script type="text/javascript" charset="utf-8" src="/shop/Public/ueditor/ueditor.all.min.js"> </script>
 <script type="text/javascript" charset="utf-8" src="/shop/Public/ueditor/lang/zh-cn/zh-cn.js"></script>
 <body>
-<form method="POST" action="/shop/index.php/Admin/Goods/edit/id/index.js.map" enctype="multipart/form-data">
+<form method="POST" action="/shop/index.php/Admin/Goods/edit/id/49/p/1.html" enctype="multipart/form-data">
 	<input type="hidden" name="id" value="<?php echo $info['id'] ?>">
 	商品名称:<input type="text" name="goods_name" value="<?php echo $info['goods_name']; ?>" /><br />
 	商品价格:<input type="text" name="price" value="<?php echo $info['price']; ?>"/><br />
