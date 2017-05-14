@@ -127,8 +127,7 @@ body {
             商品管理
                 <ul>
                     <li class="menu-item"><a href="<?php echo U('Goods/lst') ?>" target="main-frame">商品列表</a></li>
-                    <li class="menu-item"><a href="goodsAdd.html" target="main-frame">添加新商品</a></li>
-                    <li class="menu-item"><a href="categoryList.html" target="main-frame">商品分类</a></li>
+                    <li class="menu-item"><a href="<?php echo U('Category/lst') ?>" target="main-frame">商品分类</a></li>
                     <li class="menu-item"><a href="brandList.html" target="main-frame">商品品牌</a></li>
                     <li class="menu-item"><a href="goodsTrash.html" target="main-frame">商品回收站</a></li>
                 </ul>

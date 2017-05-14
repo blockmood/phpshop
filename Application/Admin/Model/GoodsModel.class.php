@@ -24,43 +24,17 @@ class GoodsModel extends Model
 	{
 		// 获取当前时间
 		$data['addtime'] = time();
-
-		//上传图片
-		if(isset($_FILES['logo']) && $_FILES['logo']['error'] === 0)
-		{
-			 $rootPath = C('IMG_rootPath');
-			 $upload = new \Think\Upload(array(
-			 	'rootPath'=> $rootPath
-			 ));// 实例化上传类    
-			 $upload->maxSize   =     (int)C('IMG_maxSize') * 1024 * 1024;   
-			 $upload->exts      =     C('IMG_exit');
-			 //$upload->rootPath  =  	  $rootPath;    
-			 $upload->savePath  =     'Goods/'; 
-			 // 设置附件上传目录    
-
-			 // 上传文件     
-			 $info   =   $upload->upload();    
-
-			 if(!$info) {
-			 	 // 上传错误提示错误信息        
-			 	 $this->error = $upload->getError();
-			 	 return false;    
-			 }else{
-			 	// 上传成功,生成缩略图        
-			 	$image = new \Think\Image(); 
-
-			 	//原图文件名
-			 	$logoName = $info['logo']['savepath'] . $info['logo']['savename'];
-			 	//拼接缩略图文件名
-			 	$smallName = $info['logo']['savepath'] .'sm_'. $info['logo']['savename'];
-			 	$image->open($rootPath.$logoName);
-			 	$image->thumb(150, 150)->save($rootPath.$smallName);
-
-			 	//把图片路径放到表单中，存入数据库
-			 	$data['logo'] = $logoName;
-			 	$data['sm_logo'] = $smallName;
-			 }
+		$res = upLoadImg('logo','Goods',array(
+			array(50,50),
+			));
+		if($res['ok'] == 1){
+			$data['logo'] = $res['images'][0];
+			$data['sm_logo'] = $res['images'][1];
+		}else{
+			$this->error = $res['error'];
+			return false;
 		}
+		
 	}
 
 	public function search()
@@ -193,11 +167,7 @@ class GoodsModel extends Model
 
 			 	//删除商品的原图
 			 	$logo = $this->field('logo,sm_logo')->find($option['where']['id']);
-				//从配置文件中取出图片所在目录
-				$rp = C('IMG_rootPath');
-				//删除图片
-				unlink($rp . $logo['logo']);
-				unlink($rp . $logo['sm_logo']);
+				deleteImg($logo);
 			 }
 		}
 	}

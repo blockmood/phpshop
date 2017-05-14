@@ -20,6 +20,14 @@ CREATE TABLE IF NOT EXISTS php34_goods
 )engine=MyISAM default charset=utf8;
 
 
+CREATE TABLE IF NOT EXISTS php34_category
+(
+	id smallint unsigned not null auto_increment,
+	cat_name varchar(30) not null comment '分类名称',
+	parent_id smallint unsigned not null default '0' comment '上级分类的ID 0:顶级分类',
+	primary key(id) 
+)engine=MyISAM default charset=utf8;
+
 
 
 DROP TABLE IF EXISTS php34_admin;

@@ -8,7 +8,7 @@
 <script src="/shop/Public/datepicker/jquery-1.7.2.min.js"></script>
 </head>
 <body style="background: #278296;color:white">
-<form method="post" id="a" action="/shop/index.php/Admin/Login/login" onsubmit="return validate()">
+<form method="post" id="a" action="/shop/index.php/Admin/Login/login.html" onsubmit="return validate()">
     <table cellspacing="0" cellpadding="0" style="margin-top:100px" align="center">
         <tr>
             <td>
@@ -59,7 +59,7 @@
    $('form').eq(0).submit(function(){
         $.ajax({
             type:'post',
-            url: "/shop/index.php/Admin/Login/login",
+            url: "/shop/index.php/Admin/Login/login.html",
             data:$(this).serialize(),
             dataType:'json',
             success:function(data){

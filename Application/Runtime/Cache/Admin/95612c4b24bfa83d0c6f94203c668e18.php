@@ -25,31 +25,39 @@
 
 <!-- 页面中的内容 -->
 
-<form name="main_form" method="POST" action="/shop/index.php/Goods/add.html" enctype="multipart/form-data">
-	商品名称:<input type="text" name="goods_name" /><br />
-	商品价格:<input type="text" name="price" /><br />
-	商品logo:<input type="file" name="logo"><br/>
-	商品描述:<textarea id="sub_goods_name"  name="goods_desc"></textarea><br />
-	是否上架:
-	<input type="radio" name="is_on_sale" value="1" checked="checked" />上架
-	<input type="radio" name="is_on_sale" value="0" />下架
-
-	<br />
-	<input type="submit" value="提交" />
-</form>
-
-</body>
-</html>
-
-<script type="text/javascript">
-	UE.getEditor('sub_goods_name', {
-		"initialFrameWidth" : "100%",
-		"initialFrameHeight" : 280,
-		"maximumWords" : 150,
-		// "toolbars" : btn_basic
-	});
-
-
+<div class="main-div">
+    <form name="main_form" method="POST" action="/shop/index.php/Category/add.html" enctype="multipart/form-data">
+        <table cellspacing="1" cellpadding="3" width="100%">
+			<tr>
+				<td class="label">上级权限：</td>
+				<td>
+					<select name="parent_id">
+						<option value="0">顶级权限</option>
+						<?php foreach ($parentData as $k => $v): ?>						
+                            <option value="<?php echo $v['id']; ?>">
+                            <?php echo str_repeat('-', 8*$v['level']).$v['cat_name']; ?>
+                            </option>
+						<?php endforeach; ?>					
+                    </select>
+				
+                </td>
+			</tr>
+            <tr>
+                <td class="label">分类名称：</td>
+                <td>
+                    <input  type="text" name="cat_name" value="" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
 </script>
 
 <div id="footer">

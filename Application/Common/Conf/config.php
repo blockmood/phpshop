@@ -20,4 +20,8 @@ return array(
 
 	/****** md5加密 ************/
 	'md5_key' => 'trds@!#sdrtrfd',
+
+
+	'MODULE_ALLOW_LIST'    =>    array('Home','Admin','Gii'),
+    'DEFAULT_MODULE'       =>    'Admin',
 );
