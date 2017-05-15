@@ -10,14 +10,13 @@
 						<option value="0">顶级权限</option>
 						<?php foreach ($parentData as $k => $v): ?> 
 
-						  <?php if($v['id'] == $data['id'] || in_array($v['id'], $children)) continue ; ?> 
-						<option 
-                            <?php if($v['id'] == $data['parent_id']): ?>
-                                    selected="selected"
-                            <?php endif; ?> 
-                                    value="<?php echo $v['id']; ?>">
-                            <?php echo str_repeat('-', 8*$v['level']).$v['cat_name']; ?>
-                        </option>
+						<option
+                            value="<?php echo $v['id']  ?>" 
+                            <?php if($data['parent_id'] == $v['id']) echo "selected='selected'" ?>
+                         ><?php echo str_repeat("-",8*$v['level']); ?><?php echo $v['cat_name'] ?>
+                             
+                         </option>
+
 						<?php endforeach; ?>					
                     </select>
 				</td>

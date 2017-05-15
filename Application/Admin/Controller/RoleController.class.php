@@ -1,13 +1,13 @@
 <?php
 namespace Admin\Controller;
 use \Admin\Controller\IndexController;
-class CategoryController extends IndexController 
+class RoleController extends IndexController 
 {
     public function add()
     {
     	if(IS_POST)
     	{
-    		$model = D('Admin/Category');
+    		$model = D('Admin/Role');
     		if($model->create(I('post.'), 1))
     		{
     			if($id = $model->add())
@@ -18,11 +18,8 @@ class CategoryController extends IndexController
     		}
     		$this->error($model->getError());
     	}
-		$parentModel = D('Admin/Category');
-		$parentData = $parentModel->getTree();
-		$this->assign('parentData', $parentData);
 
-		$this->setPageBtn('添加商品分类', '商品分类列表', U('lst?p='.I('get.p')));
+		$this->setPageBtn('添加角色', '角色列表', U('lst?p='.I('get.p')));
 		$this->display();
     }
     public function edit()
@@ -30,7 +27,7 @@ class CategoryController extends IndexController
     	$id = I('get.id');
     	if(IS_POST)
     	{
-    		$model = D('Admin/Category');
+    		$model = D('Admin/Role');
     		if($model->create(I('post.'), 2))
     		{
     			if($model->save() !== FALSE)
@@ -41,23 +38,16 @@ class CategoryController extends IndexController
     		}
     		$this->error($model->getError());
     	}
-    	$model = M('Category');
+    	$model = M('Role');
     	$data = $model->find($id);
-
     	$this->assign('data', $data);
-		$parentModel = D('Category');
-		$parentData = $parentModel->getTree();   
 
-		$this->assign(array(
-			'parentData' => $parentData,
-		));
-
-		$this->setPageBtn('修改商品分类', '商品分类列表', U('lst?p='.I('get.p')));
+		$this->setPageBtn('修改角色', '角色列表', U('lst?p='.I('get.p')));
 		$this->display();
     }
     public function delete()
     {
-    	$model = D('Admin/Category');
+    	$model = D('Admin/Role');
     	if($model->delete(I('get.id', 0)) !== FALSE)
     	{
     		$this->success('删除成功！', U('lst', array('p' => I('get.p', 1))));
@@ -70,13 +60,14 @@ class CategoryController extends IndexController
     }
     public function lst()
     {
-    	$model = D('Admin/Category');
-		$data = $model->getTree();
+    	$model = D('Admin/Role');
+    	$data = $model->search();
     	$this->assign(array(
-    		'data' => $data,
+    		'data' => $data['data'],
+    		'page' => $data['page'],
     	));
 
-		$this->setPageBtn('商品分类列表', '添加商品分类', U('add'));
+		$this->setPageBtn('角色列表', '添加角色', U('add'));
     	$this->display();
     }
 }

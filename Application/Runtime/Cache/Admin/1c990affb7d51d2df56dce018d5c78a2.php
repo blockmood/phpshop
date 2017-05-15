@@ -25,34 +25,35 @@
 
 <!-- 页面中的内容 -->
 
-
-<form method="POST" action="/shop/index.php/Goods/edit/id/49/p/2.html" enctype="multipart/form-data">
-	<input type="hidden" name="id" value="<?php echo $info['id'] ?>">
-	商品名称:<input type="text" name="goods_name" value="<?php echo $info['goods_name']; ?>" /><br />
-	商品价格:<input type="text" name="price" value="<?php echo $info['price']; ?>"/><br />
-	商品logo:<input type="file" name="logo">
-	<img src="<?php echo '/shop/Uploads/' . $info['sm_logo']; ?>"><br/>
-	商品描述:<textarea id="sub_goods_name"  name="goods_desc"><?php echo $info['goods_desc']; ?></textarea><br />
-	是否上架:
-	<input type="radio" name="is_on_sale" value="1" <?php if($info['is_on_sale'] == 1) echo 'checked="checked"' ?> />上架
-	<input type="radio" name="is_on_sale" value="0" <?php if($info['is_on_sale'] == 0) echo 'checked="checked"' ?> />下架
-
-	<br />
-	<input type="submit" value="提交" />
-</form>
-
-</body>
-</html>
-
-<script type="text/javascript">
-	UE.getEditor('sub_goods_name', {
-		"initialFrameWidth" : "100%",
-		"initialFrameHeight" : 280,
-		"maximumWords" : 150,
-		// "toolbars" : btn_basic
-	});
+<!-- 列表 -->
+<div class="list-div" id="listDiv">
+	<table cellpadding="3" cellspacing="1">
+    	<tr>
+            <th >权限名称</th>
+            <th >模块名称</th>
+            <th >控制器名称</th>
+            <th >方法名称</th>
+            <th >上级权限ID 0:顶级权限</th>
+			<th width="60">操作</th>
+        </tr>
+		<?php foreach ($data as $k => $v): ?>            
+			<tr class="tron">
+				<td><?php echo str_repeat('-', 8*$v['level']); echo $v['pri_name']; ?></td>
+				<td><?php echo $v['module_name']; ?></td>
+				<td><?php echo $v['controller_name']; ?></td>
+				<td><?php echo $v['action_name']; ?></td>
+				<td><?php echo $v['parent_id']; ?></td>
+		        <td align="center">
+		        	<a href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p')); ?>" title="编辑">编辑</a> |
+	                <a href="<?php echo U('delete?id='.$v['id'].'&p='.I('get.p')); ?>" onclick="return confirm('确定要删除吗？');" title="移除">移除</a> 
+		        </td>
+	        </tr>
+        <?php endforeach; ?> 
+	</table>
+</div>
+<script>
 </script>
 
 <div id="footer">
-共执行 7 个查询，用时 0.028849 秒，Gzip 已禁用，内存占用 3.219 MB<br />
-版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+版权所有
+</div>

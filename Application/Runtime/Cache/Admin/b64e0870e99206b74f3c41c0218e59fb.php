@@ -25,32 +25,39 @@
 
 <!-- 页面中的内容 -->
 
-
-<form method="POST" action="/shop/index.php/Goods/edit/id/49/p/2.html" enctype="multipart/form-data">
-	<input type="hidden" name="id" value="<?php echo $info['id'] ?>">
-	商品名称:<input type="text" name="goods_name" value="<?php echo $info['goods_name']; ?>" /><br />
-	商品价格:<input type="text" name="price" value="<?php echo $info['price']; ?>"/><br />
-	商品logo:<input type="file" name="logo">
-	<img src="<?php echo '/shop/Uploads/' . $info['sm_logo']; ?>"><br/>
-	商品描述:<textarea id="sub_goods_name"  name="goods_desc"><?php echo $info['goods_desc']; ?></textarea><br />
-	是否上架:
-	<input type="radio" name="is_on_sale" value="1" <?php if($info['is_on_sale'] == 1) echo 'checked="checked"' ?> />上架
-	<input type="radio" name="is_on_sale" value="0" <?php if($info['is_on_sale'] == 0) echo 'checked="checked"' ?> />下架
-
-	<br />
-	<input type="submit" value="提交" />
-</form>
-
-</body>
-</html>
-
-<script type="text/javascript">
-	UE.getEditor('sub_goods_name', {
-		"initialFrameWidth" : "100%",
-		"initialFrameHeight" : 280,
-		"maximumWords" : 150,
-		// "toolbars" : btn_basic
-	});
+<div class="main-div">
+    <form name="main_form" method="POST" action="/shop/index.php/Admin/admin/edit/id/1.html" enctype="multipart/form-data" >
+    	<input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
+        <table cellspacing="1" cellpadding="3" width="100%">
+            <tr>
+                <td class="label">账号：</td>
+                <td>
+                    <input  type="text" name="username" value="<?php echo $data['username']; ?>" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">密码：</td>
+                <td>
+                    <input type="password" size="25" name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否启用 1:启用 0 禁用：</td>
+                <td>
+                	<input type="radio" name="is_use" value="1" <?php if($data['is_use'] == '1') echo 'checked="checked"'; ?> />启用 
+                	<input type="radio" name="is_use" value="0" <?php if($data['is_use'] == '0') echo 'checked="checked"'; ?> />禁用 
+                </td>
+            </tr>
+            <tr>
+                <td colspan="99" align="center">
+                    <input type="submit" class="button" value=" 确定 " />
+                    <input type="reset" class="button" value=" 重置 " />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<script>
 </script>
 
 <div id="footer">
