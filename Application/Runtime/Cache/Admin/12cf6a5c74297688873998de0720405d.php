@@ -13,6 +13,7 @@
 <script type="text/javascript" charset="utf-8" src="/shop/Public/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 
+
 </head>
 <body>
 <h1>
@@ -144,3 +145,4 @@
 <div id="footer">
 版权所有
 </div>
+<script type="text/javascript" charset="utf-8" src="/shop/Public/Admin/js/tran.js"></script>

@@ -6,7 +6,7 @@ class RoleController extends IndexController
     public function add()
     {
     	if(IS_POST)
-    	{
+    	{  
     		$model = D('Admin/Role');
     		if($model->create(I('post.'), 1))
     		{
@@ -18,6 +18,11 @@ class RoleController extends IndexController
     		}
     		$this->error($model->getError());
     	}
+
+        //取出所有的权限
+        $priModle = D('Privilege');
+        $priData = $priModle->getTree();
+        $this->assign('priData',$priData);
 
 		$this->setPageBtn('添加角色', '角色列表', U('lst?p='.I('get.p')));
 		$this->display();
@@ -41,6 +46,15 @@ class RoleController extends IndexController
     	$model = M('Role');
     	$data = $model->find($id);
     	$this->assign('data', $data);
+
+        //取出所有的权限
+        $priModle = D('Privilege');
+        $priData = $priModle->getTree();
+        $this->assign('priData',$priData);
+        //取出当前角色所拥有的权限的ID
+        $rpModel = M('RolePrivilege');
+        $rpData = $rpModel->field('GROUP_CONCAT(pri_id) pri_id')->where(array('role_id'=>array('eq', $id)))->find();
+        $this->assign('pri_id',$rpData['pri_id']);
 
 		$this->setPageBtn('修改角色', '角色列表', U('lst?p='.I('get.p')));
 		$this->display();

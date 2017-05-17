@@ -13,6 +13,7 @@
 <script type="text/javascript" charset="utf-8" src="/shop/Public/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 
+
 </head>
 <body>
 <h1>
@@ -30,11 +31,13 @@
 	<table cellpadding="3" cellspacing="1">
     	<tr>
             <th >角色名称</th>
+            <th >权限名称</th>
 			<th width="60">操作</th>
         </tr>
 		<?php foreach ($data as $k => $v): ?>            
-			<tr class="tron">
+			<tr class="tron" style="text-align: center;">
 				<td><?php echo $v['role_name']; ?></td>
+				<td><?php echo $v['pri_name']; ?></td>
 		        <td align="center">
 		        	<a href="<?php echo U('edit?id='.$v['id'].'&p='.I('get.p')); ?>" title="编辑">编辑</a> |
 	                <a href="<?php echo U('delete?id='.$v['id'].'&p='.I('get.p')); ?>" onclick="return confirm('确定要删除吗？');" title="移除">移除</a> 
@@ -52,3 +55,4 @@
 <div id="footer">
 版权所有
 </div>
+<script type="text/javascript" charset="utf-8" src="/shop/Public/Admin/js/tran.js"></script>

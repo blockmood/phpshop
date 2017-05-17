@@ -13,6 +13,7 @@
 <script type="text/javascript" charset="utf-8" src="/shop/Public/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 
+
 </head>
 <body>
 <h1>
@@ -53,5 +54,6 @@
 </script>
 
 <div id="footer">
-共执行 7 个查询，用时 0.028849 秒，Gzip 已禁用，内存占用 3.219 MB<br />
-版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+版权所有
+</div>
+<script type="text/javascript" charset="utf-8" src="/shop/Public/Admin/js/tran.js"></script>
