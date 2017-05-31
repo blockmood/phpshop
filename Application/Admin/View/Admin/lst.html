@@ -25,13 +25,15 @@
 			<th width="60">操作</th>
         </tr>
 		<?php foreach ($data as $k => $v): ?>            
-			<tr class="tron">
+			<tr class="tron" style="text-align: center;">
 				<td><?php echo $v['username']; ?></td>
 				<td><?php echo $v['password']; ?></td>
-				<td><?php echo $v['is_use']; ?></td>
+				<td data-id="{$v.id}" class="is_use"><?php echo $v['is_use'] == 1 ? '已启用' : '已禁用' ?></td>
 		        <td align="center">
 		        	<a href="<?php echo U('Admin/admin/edit?id='.$v['id'].'&p='.I('get.p')); ?>" title="编辑">编辑</a> |
+		        	<?php if($v['id'] > 1) : ?>
 	                <a href="<?php echo U('Admin/admin/delete?id='.$v['id'].'&p='.I('get.p')); ?>" onclick="return confirm('确定要删除吗？');" title="移除">移除</a> 
+	            	<?php  endif; ?>
 		        </td>
 	        </tr>
         <?php endforeach; ?> 
@@ -41,4 +43,24 @@
 	</table>
 </div>
 <script>
+	$('.is_use').on('click',function(){
+		//先获取点击记录的ID
+		var id = $(this).data('id');
+		if(id == 1){
+			alert('超级管理员不能被修改');
+		}
+		var _this = $(this);
+		$.ajax({
+			type:'GET',
+			url:"./ajaxIsUse/id/"+id,
+			success:function(data){
+				if(data == 0){
+					_this.html('已禁用');
+				}else{
+					_this.html('已启用');
+				}
+
+			}
+		})
+	})
 </script>

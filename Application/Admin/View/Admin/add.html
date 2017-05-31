@@ -15,6 +15,20 @@
                 </td>
             </tr>
             <tr>
+                <td class="label">确认密码：</td>
+                <td>
+                    <input type="password" size="25" name="cpassword" />
+                </td>
+            </tr>
+            <tr>
+                <td class="label">所属角色</td>
+                <td>
+                    <?php foreach($roleData as $k=>$v)  : ?>
+                    <input  type="checkbox" name="role_id[]" value="{$v.id}" />{$v.role_name}
+                <?php  endforeach ?> 
+                </td>
+            </tr>
+            <tr>
                 <td class="label">是否启用 1:启用 0 禁用：</td>
                 <td>
                 	<input type="radio" name="is_use" value="1" checked="checked" />启用 

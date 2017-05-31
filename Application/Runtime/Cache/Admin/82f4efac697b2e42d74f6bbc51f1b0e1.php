@@ -27,39 +27,39 @@
 <!-- 页面中的内容 -->
 
 <div class="main-div">
-    <form name="main_form" method="POST" action="/shop/index.php/Privilege/add.html" enctype="multipart/form-data">
+    <form name="main_form" method="POST" action="/shop/index.php/Admin/admin/add.html" enctype="multipart/form-data">
         <table cellspacing="1" cellpadding="3" width="100%">
-			<tr>
-				<td class="label">上级权限：</td>
-				<td>
-					<select name="parent_id">
-						<option value="0">顶级权限</option>
-						<?php foreach ($parentData as $k => $v): ?>						<option value="<?php echo $v['id']; ?>"><?php echo str_repeat('-', 8*$v['level']).$v['pri_name']; ?></option>
-						<?php endforeach; ?>					</select>
-				</td>
-			</tr>
             <tr>
-                <td class="label">权限名称：</td>
+                <td class="label">账号：</td>
                 <td>
-                    <input  type="text" name="pri_name" value="" />
+                    <input  type="text" name="username" value="" />
                 </td>
             </tr>
             <tr>
-                <td class="label">模块名称：</td>
+                <td class="label">密码：</td>
                 <td>
-                    <input  type="text" name="module_name" value="" />
+                    <input type="password" size="25" name="password" />
                 </td>
             </tr>
             <tr>
-                <td class="label">控制器名称：</td>
+                <td class="label">确认密码：</td>
                 <td>
-                    <input  type="text" name="controller_name" value="" />
+                    <input type="password" size="25" name="cpassword" />
                 </td>
             </tr>
             <tr>
-                <td class="label">方法名称：</td>
+                <td class="label">所属角色</td>
                 <td>
-                    <input  type="text" name="action_name" value="" />
+                    <?php foreach($roleData as $k=>$v) : ?>
+                    <input  type="checkbox" name="role_id[]" value="<?php echo ($v["id"]); ?>" /><?php echo ($v["role_name"]); ?>
+                <?php  endforeach ?> 
+                </td>
+            </tr>
+            <tr>
+                <td class="label">是否启用 1:启用 0 禁用：</td>
+                <td>
+                	<input type="radio" name="is_use" value="1" checked="checked" />启用 
+                	<input type="radio" name="is_use" value="0"  />禁用 
                 </td>
             </tr>
             <tr>
@@ -72,7 +72,6 @@
     </form>
 </div>
 <script>
-    
 </script>
 
 <div id="footer">

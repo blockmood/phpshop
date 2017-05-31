@@ -27,7 +27,7 @@
 <!-- 页面中的内容 -->
 
 <div class="main-div">
-    <form name="main_form" method="POST" action="/shop/index.php/Admin/admin/edit/id/1.html" enctype="multipart/form-data" >
+    <form name="main_form" method="POST" action="/shop/index.php/Admin/admin/edit/id/7/p/1.html" enctype="multipart/form-data" >
     	<input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
         <table cellspacing="1" cellpadding="3" width="100%">
             <tr>
@@ -43,12 +43,28 @@
                 </td>
             </tr>
             <tr>
+                <td class="label">确认密码：</td>
+                <td>
+                    <input type="password" size="25" name="cpassword" />
+                </td>
+            </tr>
+            <?php  if($data['id'] > 1): ?>
+            <tr>
+                <td class="label">所属角色</td>
+                <td>
+                    <?php foreach($roleData as $k=>$v) : if(strpos(','.$roleId.',',','.$v['id'].',') !== FALSE) $check = 'checked = "checked"'; else $check = ''; ?>
+                    <input  <?php echo ($check); ?> type="checkbox" name="role_id[]" value="<?php echo ($v["id"]); ?>" /><?php echo ($v["role_name"]); ?>
+                <?php  endforeach ?> 
+                </td>
+            </tr>
+            <tr>
                 <td class="label">是否启用 1:启用 0 禁用：</td>
                 <td>
                 	<input type="radio" name="is_use" value="1" <?php if($data['is_use'] == '1') echo 'checked="checked"'; ?> />启用 
                 	<input type="radio" name="is_use" value="0" <?php if($data['is_use'] == '0') echo 'checked="checked"'; ?> />禁用 
                 </td>
             </tr>
+            <?php  endif; ?>
             <tr>
                 <td colspan="99" align="center">
                     <input type="submit" class="button" value=" 确定 " />

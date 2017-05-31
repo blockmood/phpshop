@@ -5,9 +5,36 @@ use Think\Controller;
 class IndexController extends Controller {
 
 	public function __construct(){
-		parent::__construct();		
-		if(!session('id')){
+
+		parent::__construct();
+
+		$adminId = session('id');
+		//验证登录		
+		if(!$adminId){
 			redirect(U('Admin/Login/login'));
+		}
+		//权限验证
+		//获取管路员将要访问的页面
+		$url = MODULE_NAME .'/'. CONTROLLER_NAME .'/'.ACTION_NAME;
+		//查询数据库判断当前管理员有没有访问这个页面的权限
+		$where = 'module_name="'.MODULE_NAME.'" AND controller_name="'.CONTROLLER_NAME.'" AND action_name="'.ACTION_NAME.'"';
+		if(CONTROLLER_NAME == 'Index'){
+			return true;
+		}
+		//取出当前管理员所有的权限
+		if($adminId == 1){
+			$sql = 'SELECT count(*) has FROM php34_privilege where ' .$where;
+		}else{
+			$sql = 'SELECT COUNT(a.role_id) has
+				  FROM php34_role_privilege a
+				   LEFT JOIN php34_privilege b ON a.pri_id=b.id
+				   LEFT JOIN php34_admin_role c ON a.role_id=c.role_id
+				    WHERE c.admin_id='.$adminId.' AND '.$where;
+		}
+		$db = M();
+		$pri = $db->query($sql);
+		if($pri[0]['has'] < 1){
+			$this->error('无权访问');
 		}
 	}
 
@@ -16,6 +43,41 @@ class IndexController extends Controller {
 	}
 
 	public function menu(){
+		$adminId = session('id');
+		/********** 取出当前管理员所拥有的前两级的权限 ************/
+		// 取出当前管理员所有的权限
+		if($adminId == 1)
+			$sql = 'SELECT * FROM php34_privilege';
+		else 
+			$sql = 'SELECT b.*
+			  FROM php34_role_privilege a
+			   LEFT JOIN php34_privilege b ON a.pri_id=b.id
+			   LEFT JOIN php34_admin_role c ON a.role_id=c.role_id
+			    WHERE c.admin_id='.$adminId;
+		$db = M();
+		$pri = $db->query($sql);
+
+		
+		$btn = array();  // 放前两级的权限
+		// 从所有的权限中取出前两级的权限
+		foreach ($pri as $k => $v)
+		{
+			// 找顶级权限
+			if($v['parent_id'] == 0)
+			{
+				// 再循环把这个顶级权限的子权限
+				foreach ($pri as $k1 => $v1)
+				{
+					if($v1['parent_id'] == $v['id'])
+					{
+						$v['children'][] = $v1;
+					}
+				}
+				$btn[] = $v;
+			}
+		}
+		$this->assign('btn', $btn);
+
 		$this->display();
 	}
 

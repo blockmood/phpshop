@@ -13,6 +13,7 @@
 <script type="text/javascript" charset="utf-8" src="/shop/Public/ueditor/lang/zh-cn/zh-cn.js"></script>
 
 
+
 </head>
 <body>
 <h1>
@@ -26,7 +27,7 @@
 <!-- 页面中的内容 -->
 
 
-<form method="POST" action="/shop/index.php/Goods/edit/id/49/p/2.html" enctype="multipart/form-data">
+<form method="POST" action="/shop/index.php/Goods/edit/id/50/p/2.html" enctype="multipart/form-data">
 	<input type="hidden" name="id" value="<?php echo $info['id'] ?>">
 	商品名称:<input type="text" name="goods_name" value="<?php echo $info['goods_name']; ?>" /><br />
 	商品价格:<input type="text" name="price" value="<?php echo $info['price']; ?>"/><br />
@@ -54,5 +55,6 @@
 </script>
 
 <div id="footer">
-共执行 7 个查询，用时 0.028849 秒，Gzip 已禁用，内存占用 3.219 MB<br />
-版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+版权所有
+</div>
+<script type="text/javascript" charset="utf-8" src="/shop/Public/Admin/js/tran.js"></script>
