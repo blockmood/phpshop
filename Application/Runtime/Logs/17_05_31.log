@@ -9009,3 +9009,129 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004000s ]
 INFO: [ app_end ] --END-- [ RunTime:0.004000s ]
 
+[ 2017-05-31T20:52:55+08:00 ] ::1 /shop/index.php/Admin/Category/lst.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004000s ]
+SQL: SELECT count(*) has FROM php34_privilege where module_name="Admin" AND controller_name="Category" AND action_name="lst" [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `php34_category` [ RunTime:0.026002s ]
+SQL: SELECT * FROM `php34_category`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.034002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.035002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.005000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.005000s ]
+
+[ 2017-05-31T20:52:57+08:00 ] ::1 /shop/index.php/Admin/Goods/lst.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004001s ]
+SQL: SELECT count(*) has FROM php34_privilege where module_name="Admin" AND controller_name="Goods" AND action_name="lst" [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `php34_goods` [ RunTime:0.026001s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `php34_goods` LIMIT 1   [ RunTime:0.001000s ]
+SQL: SELECT * FROM `php34_goods` ORDER BY id asc LIMIT 0,2   [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+NOTIC: [8] Use of undefined constant id_asc - assumed 'id_asc' E:\phpStudy\WWW\shop\Application\Runtime\Cache\Admin\12cf6a5c74297688873998de0720405d.php 第 43 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.031001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.031001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-05-31T20:52:59+08:00 ] ::1 /shop/index.php/Admin/Privilege/lst.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004001s ]
+SQL: SELECT count(*) has FROM php34_privilege where module_name="Admin" AND controller_name="Privilege" AND action_name="lst" [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `php34_privilege` [ RunTime:0.021001s ]
+SQL: SELECT * FROM `php34_privilege`  [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.053003s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.053003s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.003000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.004001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.004001s ]
+
+[ 2017-05-31T20:53:00+08:00 ] ::1 /shop/index.php/Admin/Admin/lst.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+SQL: SELECT count(*) has FROM php34_privilege where module_name="Admin" AND controller_name="Admin" AND action_name="lst" [ RunTime:0.000000s ]
+NOTIC: [2048] Declaration of Admin\Model\AdminModel::_after_insert() should be compatible with Think\Model::_after_insert($data, $options) E:\phpStudy\WWW\shop\Application\Admin\Model\AdminModel.class.php 第 146 行.
+SQL: SHOW COLUMNS FROM `php34_admin` [ RunTime:0.011000s ]
+SQL: SELECT COUNT(*) AS tp_count FROM php34_admin a LIMIT 1   [ RunTime:0.000000s ]
+SQL: SELECT * FROM php34_admin a GROUP BY a.id LIMIT 0,20   [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.018001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.018001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-05-31T20:53:03+08:00 ] ::1 /shop/index.php/Admin/Admin/ajaxIsUse/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SELECT count(*) has FROM php34_privilege where module_name="Admin" AND controller_name="Admin" AND action_name="ajaxIsUse" [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `php34_admin` [ RunTime:0.011001s ]
+SQL: SELECT * FROM `php34_admin` WHERE ( `id` = 7 ) LIMIT 1   [ RunTime:0.000000s ]
+SQL: UPDATE `php34_admin` SET `is_use`=0 WHERE ( `id` = '7' ) [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2017-05-31T20:53:04+08:00 ] ::1 /shop/index.php/Admin/Admin/ajaxIsUse/id/7
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+SQL: SELECT count(*) has FROM php34_privilege where module_name="Admin" AND controller_name="Admin" AND action_name="ajaxIsUse" [ RunTime:0.001000s ]
+SQL: SHOW COLUMNS FROM `php34_admin` [ RunTime:0.011001s ]
+SQL: SELECT * FROM `php34_admin` WHERE ( `id` = 7 ) LIMIT 1   [ RunTime:0.001000s ]
+SQL: UPDATE `php34_admin` SET `is_use`=1 WHERE ( `id` = '7' ) [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
